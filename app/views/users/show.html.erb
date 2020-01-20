@@ -1,2 +1,11 @@
 <h1>Welcome <%= current_user.name %></h1>
 <%= link_to "Create a new event", new_event_path %>
+<h3>List of attended events:</h3>
+<ol style="list-style-type: none">
+  <% current_user.attended_events.each do |e| %>
+    <li>Title: <%= e.title %></li>
+    <li>Description: <%= e.description %></li>
+    <li>Date: <%= e.date %></li>
+    <hr>
+  <% end %>
+</ol>

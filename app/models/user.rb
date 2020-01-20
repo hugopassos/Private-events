@@ -6,6 +6,8 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
 
   has_many :events, foreign_key: :creator_id
+  has_many :event_attendance, foreign_key: :attendee_id
+  has_many :attended_event, through: :event_attendance, source: :attended_event
   before_create :create_remember_token
 
   def User.new_remember_token
