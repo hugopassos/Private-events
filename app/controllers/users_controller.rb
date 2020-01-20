@@ -15,11 +15,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user.events.any?
-      @events = current_user.events
-    else
-      @events = []
-    end
+    #@events = current_user.events if current_user.events.any?
+    @upcoming = Event.upcoming.joins(:event_attendances).where(event_attendances: { attendee_id: current_user.id }) 
+    @previous = Event.previous.joins(:event_attendances).where(event_attendances: { attendee_id: current_user.id }) 
   end
 
   private

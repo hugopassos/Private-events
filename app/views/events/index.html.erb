@@ -1,6 +1,17 @@
 <h1>List of Events</h1>
+<h3>Upcoming events</h3>
 <ol style="list-style-type: none">
-  <% @events.each do |e| %>
+  <% @upcoming_events.each do |e| %>
+    <li>Title: <%= e.title %></li>
+    <li>Description: <%= e.description %></li>
+    <li>Date: <%= e.date %></li>
+    <hr>
+  <% end %>
+</ol>
+<br>
+<h3>Previous events</h3>
+<ol style="list-style-type: none">
+  <% @previous_events.each do |e| %>
     <li>Title: <%= e.title %></li>
     <li>Description: <%= e.description %></li>
     <li>Date: <%= e.date %></li>
