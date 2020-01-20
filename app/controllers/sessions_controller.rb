@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
   	user = User.find_by(email: params[:session][:email])
   	if user
       flash.now[:success] = "Welcome"
-      redirect_to events_path
-  		sign_in(user)
+      sign_in user
+      redirect_to user_path(current_user.id)
   	else
   		flash.now[:success] = "Invalid email or password"
       render "new"

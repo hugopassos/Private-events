@@ -1,2 +1,7 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<h1> Event </h1>
+<% event = Event.find(params[:id]) %>
+<p>title: <%= event.title %></p>
+<p>Location: <%= event.description %></p>
+<p>Date: <%= event.date %></p>
+
+<%= link_to "Go back", current_user %>
