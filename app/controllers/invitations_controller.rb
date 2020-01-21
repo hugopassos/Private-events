@@ -1,4 +1,8 @@
 class InvitationsController < ApplicationController
+  def index
+    @invitations = Invitation.where(user_id: current_user.id)
+  end
+
   def new
     @invitation = Invitation.new
   end
@@ -14,6 +18,11 @@ class InvitationsController < ApplicationController
       flash[:alert] = 'Couldn\'t create invitation'
       render 'new'
     end
+  end
+
+  def destroy
+    @invitation = Invitation.find_by(id: params[:id]).destroy
+    redirect_to invitations_path
   end
 
   private

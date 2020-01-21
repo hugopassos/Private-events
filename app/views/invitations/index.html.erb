@@ -1,0 +1,9 @@
+<h2>You have <%= pluralize(@invitations.count, "invitation") %></h2>
+<ul>
+	<% @invitations.each do |i| %>
+		<p>Event name: <%= Event.find(i.event_id).title %></p>
+		<p>Host: <%= User.find(i.creator_id).name %></p>
+		<%= link_to "Reject", i, method: :delete, data: { confirm: "Are you sure?"} %>
+		<hr>
+	<% end %>
+</ul>
