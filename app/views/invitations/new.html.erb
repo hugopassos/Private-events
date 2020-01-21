@@ -1,5 +1,12 @@
 <h1>Invitations</h1>
-<%= form_for @invitation do |f| %>
+<% if @invitation.errors.any? %>
+	<p>You have </p><%= pluralize(@invitation.errors.count, "error") %>
+	<% @invitation.errors.each do |e| %>
+		<p><%= e %></p>
+	<% end %>
+<% end %>
+<%= form_for current_user.invitations.build(creator_id: current_user.id) do |f| %>
+  <%= f.hidden_field :creator_id %>
   <%= f.label :event_id %>
   <%= f.collection_select :event_id, Event.where(creator_id: current_user.id), :id, :title %>
   <%= f.label :user_id %>

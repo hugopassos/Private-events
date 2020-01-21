@@ -4,5 +4,5 @@ class Event < ApplicationRecord
   	scope :previous, -> { where('date < ?', Date.today).order('date desc') }
   	has_many :event_attendances, foreign_key: :attended_event_id
   	has_many :attendees, through: :event_attendances, source: :attendee
-		has_many :invitations
+	has_many :invitations, foreign_key: :event_id
 end
