@@ -5,11 +5,12 @@ class InvitationsController < ApplicationController
 
   def create
     @invitation = Invitation.new(invitation_params)
-    
+
     if @invitation.save
       flash[:success] = 'Invitation created'
       render 'new'
     else
+      @invitation.valid?
       flash[:alert] = 'Couldn\'t create invitation'
       render 'new'
     end
