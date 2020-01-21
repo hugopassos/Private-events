@@ -1,0 +1,10 @@
+<h1>Welcome <%= current_user.name %></h1>
+<h3>Your Events: </h3>
+<ol style="list-style-type: none">
+  <% @events.each do |e| %>
+    <li>Title: <%= e.title %></li>
+    <li>Description: <%= e.description %></li>
+    <li>Date: <%= e.date %></li>
+    <hr>
+  <% end %>
+</ol>

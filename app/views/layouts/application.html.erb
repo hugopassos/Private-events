@@ -10,6 +10,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <%= render "shared/header" %>
+      <% flash.each do |key, message| %>
+        <%= message %>
+      <% end %>
+      <%= yield %>
+    </div>
+    <%= render "shared/footer" %>
   </body>
 </html>
