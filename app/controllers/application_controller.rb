@@ -17,5 +17,11 @@ class ApplicationController < ActionController::Base
 		return true if current_user.present?
 	end
 
+	def logged_in?
+    	if user_signed_in?
+      		redirect_to current_user
+    	end
+  	end
+
 	helper_method :current_user, :user_signed_in?
 end

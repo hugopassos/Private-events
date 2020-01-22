@@ -1,10 +1,5 @@
-<% if !@invitation.valid? %>
-	<h2>You have </h2><%= pluralize(@invitation.errors.count, "error") %>
-	<% @invitation.errors.full_messages.each do |e| %>
-		<p><%= e %></p>
-	<% end %>
-<% end %>
-<h1>Invitations</h1>
+
+<h1>Invite users</h1>
 <%= form_for current_user.invitations.build(creator_id: current_user.id) do |f| %>
   <%= f.hidden_field :creator_id %>
   <%= f.label :event_id %>

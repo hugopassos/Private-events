@@ -6,7 +6,7 @@ class Invitation < ApplicationRecord
                                     message: 'Can\'t send the same invitation twice' }
 
   def accept
-    self.accepted = true
+    self.update_attributes(accepted: true)
     @event = EventAttendance.new
     @event.attend_event(self.user_id, self.event_id)
   end

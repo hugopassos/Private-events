@@ -1,6 +1,6 @@
 class InvitationsController < ApplicationController
   def index
-    @invitations = Invitation.where(user_id: current_user.id)
+    @invitations = Invitation.where(user_id: current_user.id, accepted: false)
   end
 
   def new
@@ -24,7 +24,7 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.find_by(id: params[:id])
     @invitation.accept
     flash[:success] = 'You accepted the invitation!'
-    render 'new'
+    redirect_to invitations_path
   end
 
   def destroy
