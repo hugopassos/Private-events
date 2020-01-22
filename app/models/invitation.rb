@@ -4,4 +4,10 @@ class Invitation < ApplicationRecord
   belongs_to :event
   validates :user_id, uniqueness: { scope: :event_id,
                                     message: 'Can\'t send the same invitation twice' }
+
+  def accept
+    self.accepted = true
+    @event = EventAttendance.new
+    @event.attend_event(self.user_id, self.event_id)
+  end
 end

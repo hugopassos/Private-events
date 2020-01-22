@@ -3,7 +3,8 @@
 	<% @invitations.each do |i| %>
 		<p>Event name: <%= Event.find(i.event_id).title %></p>
 		<p>Host: <%= User.find(i.creator_id).name %></p>
-		<%= link_to "Reject", i, method: :delete, data: { confirm: "Are you sure?"} %>
+		<%= link_to "Accept", i, method: :accept, data: { confirm: "Are you sure?"} %>
+		<%= link_to "Reject", i, method: :delete, data: { confirm: "Are you sure?" } %>
 		<hr>
 	<% end %>
 </ul>

@@ -20,6 +20,13 @@ class InvitationsController < ApplicationController
     end
   end
 
+  def accept
+    @invitation = Invitation.find_by(id: params[:id])
+    @invitation.accept
+    flash[:success] = 'You accepted the invitation!'
+    render 'new'
+  end
+
   def destroy
     @invitation = Invitation.find_by(id: params[:id]).destroy
     redirect_to invitations_path
