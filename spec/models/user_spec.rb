@@ -54,9 +54,13 @@ RSpec.describe User, type: :model do
 		expect(creator.macro).to eq(:has_many)
 	end
 
+	it 'can have many attended events' do
+		#pending
+	end
+
 	it 'should destroy dependencies' do
 		event = user.events.build(title:'title',description:'description',date:'20/01/2020')
-    user.events << event
-    expect { user.destroy }.to change { Event.count }.by(-1)
+    	user.events << event
+    	expect { user.destroy }.to change { Event.count }.by(-1)
  	end
 end
