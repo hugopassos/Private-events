@@ -15,8 +15,8 @@ class InvitationsController < ApplicationController
       render 'new'
     else
       @invitation.valid?
-      flash[:alert] = 'Couldn\'t create invitation'
       render 'new'
+      flash[:alert] = 'Couldn\'t create invitation'
     end
   end
 
