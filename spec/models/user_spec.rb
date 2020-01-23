@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 	let(:user) { User.new }
 	let(:another_user) { User.new }
+	let(:event) { Event.create(title: 'test', description: 'testing dependency', date: '30/01/2019') }
 
 	describe '#name' do
 		it 'is not valid without a name' do
@@ -56,4 +57,11 @@ RSpec.describe User, type: :model do
 		creator = User.reflect_on_association(:invitations)
 		expect(creator.macro).to eq(:has_many)
 	end
+
+	it 'should destroy dependencies' do
+		user.save
+		event = user.events.build(title: 'test', description: 'testing dependency', date: '30/01/2019')
+		user.destroy
+		expect(event).to be(nil)
+ 	end
 end
