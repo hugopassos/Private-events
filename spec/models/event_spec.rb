@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-	let(:event) { Event.new }
+	let(:event) { Event.create(title: 'event', description: 'description of the event', date: '30/01/2020') }
+  let(:user) { User.create(name: 'user', email: 'user@mail.com') }
 
   describe '#title' do
 		it 'should have a title' do
@@ -39,5 +40,14 @@ RSpec.describe Event, type: :model do
 		end
 	end
 
-  it 'should h'
+  it 'can have many attendees' do
+    #expect(event).to have_many(:attendees).through(:event_attendances)
+    expect(event).to have_many :attendees, through: :event_attendances
+    #event.should respond_to :attendees, through: :event_attendances
+  end
+
+  it 'can have many invitations' do
+		event = Event.reflect_on_association(:invitations)
+		expect(event.macro).to eq(:has_many)
+	end
 end

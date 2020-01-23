@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-	let(:user) { User.new }
+	let(:user) { User.create(name: 'john', email: 'john@mail.com') }
 	let(:another_user) { User.new }
-	let(:event) { Event.create(title: 'test', description: 'testing dependency', date: '30/01/2019') }
 
 	describe '#name' do
 		it 'is not valid without a name' do
@@ -33,11 +32,8 @@ RSpec.describe User, type: :model do
 		end
 
 		it 'should be unique' do
-			user.name = 'john'
-			user.email = 'john@email.com'
-			user.save
-			another_user.name = 'john'
-			another_user.email = 'john@email.com'
+			user.email = 'john@mail.com'
+			another_user.email = 'john@mail.com'
 			another_user.valid?
 			expect(another_user.errors[:email]).to include ('has already been taken')
 		end
@@ -59,9 +55,8 @@ RSpec.describe User, type: :model do
 	end
 
 	it 'should destroy dependencies' do
-		user.save
-		event = user.events.build(title: 'test', description: 'testing dependency', date: '30/01/2019')
-		user.destroy
-		expect(event).to be(nil)
+		event = user.events.build(title:'title',description:'description',date:'20/01/2020')
+    user.events << event
+    expect { user.destroy }.to change { Event.count }.by(-1)
  	end
 end
