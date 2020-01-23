@@ -5,9 +5,11 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  has_many :events, foreign_key: :creator_id
+  has_many :events, foreign_key: :creator_id, dependent: :destroy
   has_many :event_attendances, foreign_key: :attendee_id
   has_many :attended_events, through: :event_attendances, source: :attended_event
+  has_many :invitations, foreign_key: :creator_id, dependent: :destroy
+  has_many :invitations, foreign_key: :user_id, dependent: :destroy
   before_create :create_remember_token
 
   def User.new_remember_token

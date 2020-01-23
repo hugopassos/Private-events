@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
+  get 'invitations/new'
+  get 'invitations/create'
+  post 'invitations/:id', to: 'invitations#accept'
+  root 'users#new'
 
   get 'signup', to: 'users#new'
   get 'hosting', to: 'users#hosting'
@@ -12,4 +15,9 @@ Rails.application.routes.draw do
   resources :users
   resources :events
   resources :sessions
+  resources :invitations do
+    member do
+      post :accept
+    end
+  end
 end

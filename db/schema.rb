@@ -10,17 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_194507) do
+ActiveRecord::Schema.define(version: 2020_01_22_194054) do
 
   create_table "event_attendances", force: :cascade do |t|
-    t.integer "attendee_id"
     t.integer "attended_event_id"
-    t.integer "user_id"
-    t.integer "event_id"
+    t.integer "attendee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_event_attendances_on_event_id"
-    t.index ["user_id"], name: "index_event_attendances_on_user_id"
+    t.index ["attended_event_id"], name: "index_event_attendances_on_attended_event_id"
+    t.index ["attendee_id"], name: "index_event_attendances_on_attendee_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -31,6 +29,19 @@ ActiveRecord::Schema.define(version: 2020_01_20_194507) do
     t.datetime "updated_at", null: false
     t.integer "creator_id"
     t.index ["creator_id"], name: "index_events_on_creator_id"
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.integer "creator_id"
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "accepted", default: false
+    t.index ["creator_id"], name: "index_invitations_on_creator_id"
+    t.index ["event_id"], name: "index_invitations_on_event_id"
+    t.index ["user_id", "event_id"], name: "index_invitations_on_user_id_and_event_id", unique: true
+    t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
