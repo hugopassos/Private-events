@@ -2,11 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Invitation, type: :model do
 	let(:invitation) { Invitation.create(user_id:1, creator_id: 2, event_id: 1) }
-	describe '#index_invitations' do
-		it 'should be unique' do
-			invitation_2 = Invitation.create(user_id:1, creator_id: 2, event_id: 1)
-			expect(invitation_2[:user_id][:event_id]).to include('sdfs')
-		end
+	
+	it 'should be unique' do
+		should validate_uniqueness_of(:user_id).case_insensitive.scoped_to(:event_id).with_message('Can\'t send the same invitation twice')
 	end
 
   	it 'belongs to creator' do

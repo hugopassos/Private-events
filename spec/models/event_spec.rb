@@ -41,7 +41,7 @@ RSpec.describe Event, type: :model do
 	end
 
   it 'can have many attendees' do
-    #pending
+    should have_many(:attendees).through(:event_attendances)
   end
 
   it 'can have many invitations' do

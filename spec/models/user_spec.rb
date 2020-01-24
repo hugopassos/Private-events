@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
 	end
 
 	it 'can have many attended events' do
-		#pending
+		should have_many(:attended_events).through(:event_attendances)
 	end
 
 	it 'should destroy dependencies' do
