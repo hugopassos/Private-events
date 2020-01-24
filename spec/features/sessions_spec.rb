@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.feature 'Session', type: :feature do
+RSpec.feature 'Sessions', type: :feature do
 	before :each do
 		User.create(name: 'john', email: 'john@mail.com')
 	end
 
 	context 'User Login' do
-		scenario 'Successfully logged in' do
+		scenario 'Successful login' do
 			visit new_session_path
 			fill_in 'Email', with: 'john@mail.com'
 			click_button 'Login'
