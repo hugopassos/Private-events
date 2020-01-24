@@ -10,12 +10,16 @@
   </head>
 
   <body>
+    <%= render "shared/header" %>
     <div class="container">
-      <%= render "shared/header" %>
       <% flash.each do |key, message| %>
-        <%= message %>
+        <div class="<%= flash_class(key) %>">
+          <%= message %>
+        </div>
       <% end %>
-      <%= yield %>
     </div>
+     <div style="padding: 100px; text-align: center;" class="jumbotron">
+        <%= yield %>
+      </div>
   </body>
 </html>
