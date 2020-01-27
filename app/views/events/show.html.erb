@@ -1,0 +1,6 @@
+<h1> Event </h1>
+<% event = Event.find(params[:id]) %>
+<p>title: <%= event.title %></p>
+<p>Location: <%= event.description %></p>
+<p>Date: <%= event.date %></p>
+<%= link_to "Go back", current_user %>

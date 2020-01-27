@@ -1,0 +1,12 @@
+<h1>Invite users</h1>
+<div class="form-group">
+<%= form_for current_user.invitations.build(creator_id: current_user.id) do |f| %>
+  <%= render 'shared/error_messages', object: @invitation %>
+  <%= f.hidden_field :creator_id %>
+  <%= f.label :event_id %>
+  <%= f.collection_select :event_id, Event.where(creator_id: current_user.id), :id, :title %>
+  <%= f.label :user_id %>
+  <%= f.collection_select :user_id, User.where.not(id: current_user.id), :id, :name %>
+  <%= f.submit 'Invite' %>
+<% end %>
+</div>

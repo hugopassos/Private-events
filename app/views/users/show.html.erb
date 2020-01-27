@@ -1,0 +1,21 @@
+<h1>Welcome <%= current_user.name %></h1>
+<%= link_to "Create a new event", new_event_path %>
+<h3>List of upcoming events you attend:</h3>
+<ol style="list-style-type: none">
+  <% @upcoming.each do |e| %>
+    <li>Title: <%= e.title %></li>
+    <li>Description: <%= e.description %></li>
+    <li>Date: <%= e.date %></li>
+    <hr>
+  <% end %>
+</ol>
+<br>
+<h3>List of previous events you attended:</h3>
+<ol style="list-style-type: none">
+  <% @previous.each do |e| %>
+    <li>Title: <%= e.title %></li>
+    <li>Description: <%= e.description %></li>
+    <li>Date: <%= e.date %></li>
+    <hr>
+  <% end %>
+</ol>
