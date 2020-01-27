@@ -1,0 +1,58 @@
+@import "bootstrap-sprockets";
+@import 'bootstrap'
+
+
+body{
+	 background-image: url('/assets/cover.jpeg');
+	 background-repeat: no-repeat;
+	 color: white;
+}
+h1, h2{
+	text-align: center;
+}
+
+button{
+	color: black;
+}
+
+.navbar{
+	background-color: #000000;
+	font-size: 20px;
+	ul {margin: 0 auto;}
+	li{ margin-left: 25px; }
+	
+}
+
+.jumbotron{
+	background-color: #000000;
+	border-radius: 15px;
+	padding-top: 200px;
+	text-align: center;
+
+}
+
+.upcomming{
+	height: auto;
+	
+}
+
+.date_field{
+	color: black;
+}
+
+//forms
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
